@@ -15,7 +15,7 @@ if (isset($_GET['log_password']) && isset($_GET['log_nick'])) {
     $lista = login($nick);
      $vuelta = ['datos' => $lista];
 
-    $objeto = json_encode($vuelta);
+    $objeto = json_encode($vuelta,JSON_UNESCAPED_UNICODE);
     echo $objeto;
 }
 
@@ -31,13 +31,13 @@ function login($nick) {
 
 
     $datos = array(':par1' => $nick);
-    $sql = ' SELECT * FROM profesor WHERE pro_login=:par1';
+    $sql = ' SELECT * FROM profesores WHERE pro_login=:par1';
     $q = $connection->obtenerConex()->prepare($sql);
     $q->execute($datos);
 
     $q->setFetchMode();
     $rows = $q->fetchAll();
-
+    print_r($q);
     if (empty($rows)) {
         $rows = 'VACIO';
 

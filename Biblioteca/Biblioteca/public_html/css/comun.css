@@ -1,9 +1,13 @@
 /*--- alinea el elemento en el centro de la página---*/
 .alinContCentro{
-    
+
     display:inline-block;
     text-align:center;
 }
 .colorNavbar{
     background-color: #0033FF;
+}
+.imagenBuscar{
+    width: 20%;
+    height: auto;  
 }
