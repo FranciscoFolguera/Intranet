@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="content-type" content="text/plain; charset=UTF-8" />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title></title>
+    <script src="JS/JavaScript.js"></script>
+    <style>
+        td {
+            min-width: 180px;
+            border-right: 1px ridge #CCD1D1;
+        }
+
+        .celdaPar {
+            background-color: #E5E7E9;
+        }
+
+        .celdaImpar {
+        }
+
+        .texto1 {
+            font-size: 15px;
+            background-color: #F2F3F4;
+        }
+
+        .colorLetra {
+            color: blue;
+        }
+
+        thead {
+            text-align: center;
+        }
+
+        tbody {
+            font-size: 14px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" name="IDLibro" disabled="disabled" id="IDLibro">
+
+    <input type="text" name="Titulo" disabled="disabled" id="Titulo">
+    <input type="text" name="Prestamo" disabled="disabled" id="Prestamo">
+
+    <button type="button" onclick="exportar_excel()">Exportar a Excel</button>
+
+</body>
+</html>
