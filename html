@@ -41,12 +41,28 @@
     </style>
 </head>
 <body>
-    <input type="text" name="IDLibro" disabled="disabled" id="IDLibro">
+    <div style="">
+        ¿Está el libro en ABIES?
+        <div> SI <input type="radio" name="metodoPrestamo" value="con_abies" /></div>
+        <div style="">NO <input type="radio" name="metodoPrestamo" value="sin_abies" /></div>
 
-    <input type="text" name="Titulo" disabled="disabled" id="Titulo">
-    <input type="text" name="Prestamo" disabled="disabled" id="Prestamo">
+    </div>
+    <div style="display:none" id="prestamo_abies">
+        Título: <input type="text" name="search_titulo" value=""><br>
+        Autor: <input type="text" name="search_autor" value=""><br>
+        Codigo Ejemplar en ABIES: <input type="text" name="search_codAbies" value=""><br>
+    </div>
+    <div id="con_abies">
+        
+    </div>
+   
+    <div>
+        Seleccione un libro para prestarlo<br />
+        <span id="campo_cod">ISBN:</span><input type="text" name="IDLibro" disabled="disabled" id="selected_IDLibro">
+        <span id="campo_titulo">Título:</span><input type="text" name="Titulo" disabled="disabled" id="selected_Titulo">
+        <span id="campo_autor">Autor:</span><input type="text" name="Prestamo" disabled="disabled" id="selected_Prestamo">
+    </div>
 
-    <button type="button" onclick="exportar_excel()">Exportar a Excel</button>
 
 </body>
 </html>
