@@ -1,0 +1,134 @@
+
+var datos =
+{
+    0: { Fruta: "Pera", Verdura: 'Brócoli', Legumbre: 'Garbanzo', Pasta: 'Macarrón', Carne: 'Pollo', Pescado: 'Emperador', Tipo: "1" },
+    1: { Fruta: "Manzana", Verdura: 'Lechuga', Legumbre: 'Judía pinta', Pasta: 'Espaguetis', Carne: 'Pavo', Pescado: 'Atún', Tipo: "0" },
+    2: { Fruta: "Platano", Verdura: 'Tomáte', Legumbre: 'Lenteja', Pasta: 'Fideos', Carne: 'Conejo', Pescado: 'Salmón', Tipo: "0" },
+    3: { Fruta: "Naranja", Verdura: 'Pepino', Legumbre: 'Judía Blanca', Pasta: 'Lasaña', Carne: 'Cerdo', Pescado: 'Atún', Tipo: "0" },
+    4: { Fruta: "Sandía", Verdura: 'Espinacas', Legumbre: 'Guisante', Pasta: 'Canelones', Carne: 'Ternera', Pescado: 'Boquerones', Tipo: "1" },
+    5: { Fruta: "Melón", Verdura: 'Hacelgas', Legumbre: 'Alubia', Pasta: 'Ñoquis', Carne: 'Chuletas', Pescado: 'Panga', Tipo: "0" },
+    6: { Fruta: "Fresa", Verdura: 'Alcachofa', Legumbre: 'Haba ', Pasta: 'Ravioli', Carne: 'Cochinillo', Pescado: 'Tintorera', Tipo: "0" }
+
+
+
+};
+
+function crear_Tabla(x_datos) {
+    var body = document.getElementsByTagName('body')[0];
+    var table = document.createElement('table');
+    var thead = document.createElement('thead');
+    var tr = document.createElement('tr');
+    for (x in datos[0]) {
+        var th = document.createElement('th');
+        var value = x;
+        th.appendChild(document.createTextNode(x));
+        tr.appendChild(th);
+
+    }
+    tr.appendChild(th);
+    thead.appendChild(tr);
+    var tbody = document.createElement('tbody');
+    for (fila in datos) {
+        tr = document.createElement('tr');
+        for (columna in datos[fila]) {
+            var td = document.createElement('td');
+            var value = datos[fila][columna];
+            td.appendChild(document.createTextNode(value));
+            tr.appendChild(td);
+            if (columna=='Tipo') {
+                if (value==1) {
+                    tr.style.color = 'red';
+                }
+            }
+        }
+         td = document.createElement('td');
+        var input = document.createElement('input');
+        input.type = 'radio';
+        input.setAttribute('name', 'selec_libro');
+        input.value = 'ID_:_' + datos[fila]['Fruta'] + '_:_TIT_:_' + datos[fila]['Verdura'] + '_:_AUT_:_' + datos[fila]['Legumbre'];
+        td.appendChild(input);
+        var name, arr = '';
+        arr = tr.className.split(" ");
+
+        if (fila % 2 == 0) {
+            name = "celdaPar";
+           
+        } else {
+            name = "celdaImpar";
+        }
+        if (arr.indexOf(name) == -1) {
+            tr.className += " " + name;
+
+        }
+        tr.appendChild(td);
+        tbody.appendChild(tr);
+    }
+    table.appendChild(thead);
+    table.appendChild(tbody);
+    table.setAttribute("name", 'tabla_libros');
+    document.getElementById('con_abies').insertBefore(table, document.getElementById('con_abies').childNodes[0]);
+
+   // document.getElementById('con_abies').appendChild(table);
+
+    //var tbody = document.createElement('tbody');
+}
+
+document.addEventListener("DOMContentLoaded", function (event) {
+   
+   
+    escuchador_eventos();
+    var rad = document.getElementsByName('selec_libro');
+    var prev = null;
+    for (var i = 0; i < rad.length; i++) {
+        rad[i].addEventListener('change', function () {
+            if (this !== prev) {
+                prev = this;
+            }
+            rellena_campos(this.value);
+            console.log(this.value)
+        });
+    }
+});
+
+function rellena_campos(fila) {
+    var campos = fila.split('_:_');
+    document.getElementById('selected_IDLibro').value = campos[1];
+    document.getElementById('selected_Titulo').value = campos[3];
+    document.getElementById('selected_Prestamo').value = campos[5];
+}
+
+function escuchador_eventos() {
+    var radio_metodo = document.getElementsByName('metodoPrestamo');
+    var prev = null;
+    for (var i = 0; i < radio_metodo.length; i++) {
+        radio_metodo[i].addEventListener('change', function () {
+            if (this !== prev) {
+                prev = this;
+            }
+            change_meotodPrestamo(this.value);
+        });
+    }
+}
+function change_meotodPrestamo(metodo) {
+
+    if (metodo === "con_abies") {
+        document.getElementById("prestamo_abies").style.display = 'block';
+        document.getElementById("campo_cod").innerHTML = 'Código en ABIES: ';
+        document.getElementById("selected_IDLibro").disabled = true;
+        document.getElementById("selected_Titulo").disabled = true;
+        document.getElementById("selected_Prestamo").disabled = true;
+
+
+        crear_Tabla(datos);
+    } else if (metodo === "sin_abies") {
+        document.getElementById("prestamo_abies").style.display = 'none';
+        document.getElementById("campo_cod").innerHTML = 'ISBN: ';
+        document.getElementById("selected_IDLibro").disabled = false;
+        document.getElementById("selected_Titulo").disabled = false;
+        document.getElementById("selected_Prestamo").disabled = false;
+
+        document.getElementById('con_abies').parentNode.removeChild(document.getElementsByName('tabla_libros'));
+       // document.getElementsByName('tabla_libros').remove;
+
+    }
+}
