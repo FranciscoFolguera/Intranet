@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        body {
+            background-color: #9ACD32;
+        }
+        .centered {
+            width: 400px;
+            height: 100px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            background: #000;
+            filter: blur(10px) contrast(20);
+        }
+
+        .blob-1, .blob-2 {
+            width: 70px;
+            height: 70px;
+            position: absolute;
+            background: #fff;
+            border-radius: 50%;
+            top: 70%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+        }
+
+        .blob-1 {
+            left: 35%;
+            animation: osc-l 2.5s ease infinite;
+            background: #8B4513;
+        }
+
+        .blob-2 {
+            left: 40%;
+            animation: osc-r 2.5s ease infinite;
+            background: #8B4513;
+        }
+
+        .tronco {
+            left: 37.5%;
+            width: 70px;
+            height: 300px;
+            position: absolute;
+            background: #fff;
+            top: 47%;
+            transform: translate(-50%,-50%);
+            background: #8B4513;
+        }
+
+        .cuspide {
+            left: 37.5%;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            position: absolute;
+            background: #fff;
+            top: 25%;
+            transform: translate(-50%,-50%);
+            background: #FCD0B4;
+        }
+    </style>
+</head>
+<body>
+    <div class="">
+        <div class="blob-1"></div>
+        <div class="cuspide"></div>
+        <div class="tronco"></div>
+        <div class="blob-2"></div>
+    </div>
+</body>
+</html>
