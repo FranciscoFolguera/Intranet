@@ -132,3 +132,18 @@ function change_meotodPrestamo(metodo) {
 
     }
 }
+function check_box(checkbox) {
+    var x = document.getElementById("new_reg");
+    var lib_selected = document.getElementsByName("lib_selected");
+
+    if (x.checked) {
+        for (y in lib_selected) {
+            lib_selected[y].disabled = false;
+        }
+        y.disabled = false;
+    } else {
+        for (y in lib_selected) {
+            lib_selected[y].disabled = true;
+        }
+    }
+}
